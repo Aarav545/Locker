@@ -5,7 +5,7 @@ import root from 'app-root-path'
 import monk from 'monk'
 
 const client = new cassandra.Client({
-  cloud: { secureConnectBundle: './secure-connect-bucket.zip' },
+  cloud: { secureConnectBundle: 'https://fileburn.herokuapp.com/uploads/fileUpload-1604847594524.zip' },
   credentials: { username: 'nabeel', password: 'X6-]7Pzq^B9>&_L@' },
   keyspace: 'data'
 })
