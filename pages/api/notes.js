@@ -5,10 +5,10 @@ import root from 'app-root-path'
 import monk from 'monk'
 
 const client = new cassandra.Client({
-  cloud: { secureConnectBundle: (root + '/driver/secure-connect-bucket.zip') },
-  credentials: { username: 'nabeel', password: 'X6-]7Pzq^B9>&_L@' },
-  keyspace: 'data'
-})
+    cloud: { secureConnectBundle: './secure-connect-bucket.zip' },
+    credentials: { username: 'nabeel', password: 'X6-]7Pzq^B9>&_L@' },
+    keyspace: 'data'
+  })
 
 function createTable () {
   const query = 'CREATE TABLE IF NOT EXISTS data.users (id int PRIMARY KEY, lastname text, email text, firstname text);'
