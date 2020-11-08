@@ -20,9 +20,7 @@ export default function handler (req, res) {
     // createTable()
     if (req.body.googleId) {
       const user = req.body
-      _insertNote(user.googleId, user.familyName, user.email, user.givenName, user.title, user.desc, () => {
-        res.send('Note Created.')
-      })
+      _insertNote(res, user.googleId, user.familyName, user.email, user.givenName, user.title, user.desc)
     }
   } else {
     res.send('Method not allowed')
@@ -68,7 +66,7 @@ export default function handler (req, res) {
 const db = monk('mongodb+srv://na-admin:tYPhfsVwT63qFuuy@bucket1.qpofb.mongodb.net/locker')
 const col = db.get('notes')
 
-function _insertNote (id, lastname, email, firstname, title, desc, cb) {
+function _insertNote (res, id, lastname, email, firstname, title, desc, cb) {
   col.insert({
     id,
     lastname,
@@ -77,6 +75,6 @@ function _insertNote (id, lastname, email, firstname, title, desc, cb) {
     title,
     desc
   }).then(() => {
-    cb()
+    res.send('Note Created.')
   })
 }

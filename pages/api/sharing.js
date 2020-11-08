@@ -17,7 +17,7 @@ import monk from 'monk'
 
 export default function handler (req, res) {
   if (req.method === 'POST') {
-    createTable()
+    // createTable()
     if (req.body.googleId) {
       const user = req.body
       if (user.googleId) {

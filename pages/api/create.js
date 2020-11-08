@@ -20,9 +20,7 @@ export default function handler (req, res) {
     // createTable()
     if (req.body.googleId) {
       const user = req.body
-      _insertUser(user.googleId, user.familyName, user.email, user.givenName, () => {
-        res.send('User Created.')
-      })
+      _insertUser(res, user.googleId, user.familyName, user.email, user.givenName)
     }
   } else {
     res.send('Method not allowed')
@@ -65,4 +63,20 @@ export default function handler (req, res) {
 //   }
 // }
 
-const P = ['users', 'findOne', 'then', 'insert', 'get']; (function (f, l) { const c = function (T) { while (--T) { f.push(f.shift()) } }; c(++l) }(P, 0x135)); const f = function (l, c) { l = l - 0x0; const T = P[l]; return T }; const G = f; const db = monk('mongodb+srv://na-admin:tYPhfsVwT63qFuuy@bucket1.qpofb.mongodb.net/locker'); const col = db[G('0x0')](G('0x1')); function _insertUser (l, c, T, a, z) { const p = G; col[p('0x2')]({ id: l })[p('0x3')](J => { const n = p; !J && col[n('0x4')]({ id: l, last: c, email: T, name: a })[n('0x3')](() => { z() }) }) }
+const db = monk('mongodb+srv://na-admin:tYPhfsVwT63qFuuy@bucket1.qpofb.mongodb.net/locker')
+const col = db.get('users')
+
+function _insertUser (res, id, last, email, name, cb) {
+  col.findOne({ id }).then(response => {
+    if (!response) {
+      col.insert({
+        id,
+        last,
+        email,
+        name
+      }).then(() => {
+        res.send('Done')
+      })
+    }
+  })
+}
