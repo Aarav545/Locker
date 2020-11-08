@@ -4,6 +4,7 @@
 }
 
 .note {
+    cursor: pointer !important;
     margin: 12px !important;
 }
 
