@@ -1,0 +1,20 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.customTitle {
+    animation: customTitleFadeIn 0.5s;
+}
+
+@keyframes customTitleFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@media only screen and (max-width: 600px) {
+    .customTitle {
+        font-size: 24px;
+    }
+}

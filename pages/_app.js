@@ -1,6 +1,6 @@
 import { GeistProvider, CssBaseline } from '@geist-ui/react'
 
-function MyApp({ Component, pageProps }) {
+function MyApp ({ Component, pageProps }) {
   return (
     <GeistProvider>
       <CssBaseline />

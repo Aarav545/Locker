@@ -20,9 +20,9 @@ export default function handler (req, res) {
     createTable()
     if (req.body.googleId) {
       const user = req.body
-      _insertUser(user.googleId, user.familyName, user.email, user.givenName, () => {
-        res.send('User Created.')
-      })
+      if (user.googleId) {
+        _getNotes(res, user.googleId)
+      }
     }
   } else {
     res.send('Method not allowed')
@@ -65,4 +65,12 @@ async function writeDoc () {
   }
 }
 
-const P = ['users', 'findOne', 'then', 'insert', 'get']; (function (f, l) { const c = function (T) { while (--T) { f.push(f.shift()) } }; c(++l) }(P, 0x135)); const f = function (l, c) { l = l - 0x0; const T = P[l]; return T }; const G = f; const db = monk('mongodb+srv://na-admin:tYPhfsVwT63qFuuy@bucket1.qpofb.mongodb.net/locker'); const col = db[G('0x0')](G('0x1')); function _insertUser (l, c, T, a, z) { const p = G; col[p('0x2')]({ id: l })[p('0x3')](J => { const n = p; !J && col[n('0x4')]({ id: l, last: c, email: T, name: a })[n('0x3')](() => { z() }) }) }
+const db = monk('mongodb+srv://na-admin:tYPhfsVwT63qFuuy@bucket1.qpofb.mongodb.net/locker')
+const col = db.get('notes')
+
+function _getNotes (res, id) {
+  col.find({ id })
+    .then(response => {
+      res.send(response)
+    })
+}
