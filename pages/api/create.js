@@ -5,8 +5,8 @@ import root from 'app-root-path'
 import monk from 'monk'
 
 // const client = new cassandra.Client({
-//   cloud: { secureConnectBundle: (root + '/driver/secure-connect-bucket.zip') },
-//   credentials: { username: 'nabeel', password: 'X6-]7Pzq^B9>&_L@' },
+//   cloud: { secureConnectBundle: *******},
+//   credentials: ********,
 //   keyspace: 'data'
 // })
 
